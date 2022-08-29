@@ -4,29 +4,24 @@
  * Handling navbar clicks and updating navbar
  */
 
-/** Show main list of all stories when click site name */
-
+// showing all stories when "Hack or Snooze" is clicked
 function navAllStories(evt) {
   console.debug("navAllStories");
   hidePageComponents();
   putStoriesOnPage();
 }
-
 $body.on("click", "#nav-all", navAllStories);
 
-/** Show login/signup on click on "login" */
-
+// show login and sign up form when login/signup is clicked
 function navLoginClick(evt) {
   console.debug("navLoginClick", evt);
   hidePageComponents();
   $loginForm.show();
   $signupForm.show();
 }
-
 $navLogin.on("click", navLoginClick);
 
-/** When a user first logins in, update the navbar to reflect that. */
-
+// updating nav when loggin in, showing username
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
   $(".main-nav-links").show();
@@ -35,31 +30,32 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
+// submitting form on submit button
 function submitClick(evt) {
   console.debug("submitClick");
   $("#submit-form").show()
 }
+$("#navSubmit").on("click", submitClick)
 
+// hiding form on hide form button
 function hideForm(evt) {
   evt.preventDefault();
   $("#submit-form").hide()
-}
-
-$("#navSubmit").on("click", submitClick)
+};
 $("#hide-form").on("click", hideForm)
 
+// showing user stories when "my stories" is clicked
 function showUserStories(evt) {
   hidePageComponents();
   putUserStoriesOnPage();
   $myStories.show();
-}
-
+};
 $('#nav-my-stories').on("click", showUserStories);
 
+// showing favorited stories when "favorites" is clicked
 function navFavorites(evt) {
   console.debug("navFavorites");
   hidePageComponents();
   putFavoritesListOnPage();
 }
-
 $('#nav-favorites').on("click", navFavorites);
